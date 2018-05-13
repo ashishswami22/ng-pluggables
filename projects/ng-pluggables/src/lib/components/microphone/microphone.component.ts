@@ -17,7 +17,6 @@ export class MicrophoneComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     var me = this;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      console.log('getUserMedia supported.');
       navigator.mediaDevices.getUserMedia(
         // constraints - only audio needed for this app
         {
@@ -35,7 +34,6 @@ export class MicrophoneComponent implements OnInit, AfterViewInit {
           }
 
           mediaRecorder.onstop = function (e) {
-            console.log("recorder stopped");
             var blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
             chunks = [];
             me.recognize.emit(blob);
@@ -43,18 +41,10 @@ export class MicrophoneComponent implements OnInit, AfterViewInit {
 
           me.microphone.nativeElement.onmousedown = function () {
             mediaRecorder.start();
-            console.log(mediaRecorder.state);
-            console.log("recorder started");
-            me.microphone.nativeElement.style.background = "red";
-            me.microphone.nativeElement.style.color = "black";
           }
 
           me.microphone.nativeElement.onmouseup = function () {
             mediaRecorder.stop();
-            console.log(mediaRecorder.state);
-            console.log("recorder stopped");
-            me.microphone.nativeElement.style.background = "";
-            me.microphone.nativeElement.style.color = "";
           }
 
 
@@ -62,11 +52,11 @@ export class MicrophoneComponent implements OnInit, AfterViewInit {
 
         // Error callback
         .catch(function (err) {
-          console.log('The following getUserMedia error occured: ' + err);
+          console.log('ng-pluggable-microphone: ' + err);
         }
         );
     } else {
-      console.log('getUserMedia not supported on your browser!');
+      console.log('ng-pluggable-microphone: getUserMedia not supported on your browser!');
     }
 
   }
