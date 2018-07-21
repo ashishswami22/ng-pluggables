@@ -8,6 +8,9 @@ import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/cor
 export class AnalogClockComponent implements OnInit, AfterViewInit {
   @Input() size = 400;
   @ViewChild('canvas') canvas;
+  @Input() gradiantA = '#333';
+  @Input() gradiantB = 'white';
+  @Input() timezoneOffsetInMinutes;
   constructor() { }
 
   ngOnInit() {
@@ -33,20 +36,20 @@ export class AnalogClockComponent implements OnInit, AfterViewInit {
 
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = this.gradiantB;
     ctx.fill();
 
     grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
-    grad.addColorStop(0, '#333');
-    grad.addColorStop(0.5, 'white');
-    grad.addColorStop(1, '#333');
+    grad.addColorStop(0, this.gradiantA);
+    grad.addColorStop(0.5, this.gradiantB);
+    grad.addColorStop(1, this.gradiantA);
     ctx.strokeStyle = grad;
     ctx.lineWidth = radius * 0.1;
     ctx.stroke();
 
     ctx.beginPath();
     ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = this.gradiantA;
     ctx.fill();
   }
 
@@ -61,6 +64,7 @@ export class AnalogClockComponent implements OnInit, AfterViewInit {
       ctx.rotate(ang);
       ctx.translate(0, -radius * 0.85);
       ctx.rotate(-ang);
+      ctx.fillStyle = this.gradiantA;
       ctx.fillText(num.toString(), 0, 0);
       ctx.rotate(ang);
       ctx.translate(0, radius * 0.85);
@@ -69,7 +73,7 @@ export class AnalogClockComponent implements OnInit, AfterViewInit {
   }
 
   drawTime(ctx, radius) {
-    var now = new Date();
+    var now = this.getDate();
     var hour = now.getHours();
     var minute = now.getMinutes();
     var second = now.getSeconds();
@@ -94,6 +98,22 @@ export class AnalogClockComponent implements OnInit, AfterViewInit {
     ctx.lineTo(0, -length);
     ctx.stroke();
     ctx.rotate(-pos);
+  }
+
+  getDate() {
+    if (isNaN(this.timezoneOffsetInMinutes)) {
+      return new Date();
+    }
+    // create Date object for current location
+    const d = new Date();
+
+    // convert to millisec
+    // add local time zone offset
+    // get UTC time in millisec
+    const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+    // create new Date object using supplied offset
+    return new Date(utc + (60000 * this.timezoneOffsetInMinutes));
   }
 
 }
