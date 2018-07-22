@@ -34,7 +34,7 @@ export class MicrophoneComponent implements OnInit, AfterViewInit {
           }
 
           mediaRecorder.onstop = function (e) {
-            var blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+            var blob = new Blob(chunks, { 'type': 'audio/wav; codecs=opus' });
             chunks = [];
             me.recognize.emit(blob);
           }
