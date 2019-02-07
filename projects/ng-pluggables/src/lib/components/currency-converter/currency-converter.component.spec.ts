@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgPluggablesComponent } from './ng-pluggables.component';
+import { CurrencyConverterComponent } from './currency-converter.component';
 
-describe('NgPluggablesComponent', () => {
-  let component: NgPluggablesComponent;
-  let fixture: ComponentFixture<NgPluggablesComponent>;
+describe('CurrencyConverterComponent', () => {
+  let component: CurrencyConverterComponent;
+  let fixture: ComponentFixture<CurrencyConverterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgPluggablesComponent ]
+      declarations: [ CurrencyConverterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgPluggablesComponent);
+    fixture = TestBed.createComponent(CurrencyConverterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

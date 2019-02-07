@@ -1,0 +1,21 @@
+<div class="container" *ngIf="config && config.currencies && config.currencies.length > 1">
+  <div class="row" *ngFor="let row of rows" [ngClass]="{highlight: lastSourceRow && row.currency_key === lastSourceRow.currency_key}">
+    <div class="col-sm">
+      <select class="form-control" [(ngModel)]="row.currency_key" (ngModelChange)="convertAllRows(lastSourceRow)">
+        <option *ngFor="let currency of config.currencies" value="{{currency.key}}">
+          {{currency.display_name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm">
+      <input class="form-control" [(ngModel)]="row.value" (ngModelChange)="convertAllRows(row)" type="text">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm text-right">
+      <button type="button" class="btn btn-secondary" (click)="addRow()">Add more</button>
+    </div>
+  </div>
+</div>
