@@ -8,7 +8,8 @@
       </select>
     </div>
     <div class="col-sm">
-      <input class="form-control" [(ngModel)]="row.value" (ngModelChange)="convertAllRows(row)" type="text">
+      <input class="form-control" [(ngModel)]="row.value" (ngModelChange)="convertAllRows(row)" (focus)="$event.target.select()"
+        type="text">
     </div>
   </div>
 

@@ -3,6 +3,7 @@
 #ng-pluggables
 Reusable & customizable angular components
 
+* Number Internationalization
 * Currency Converter
 * Microphone
 * Analog clock

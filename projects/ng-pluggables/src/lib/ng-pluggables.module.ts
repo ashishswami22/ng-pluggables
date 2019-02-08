@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AnalogClockComponent } from './components/analog-clock/analog-clock.component';
 import { MicrophoneComponent } from './components/microphone/microphone.component';
 import { CurrencyConverterComponent } from './components/currency-converter/currency-converter.component';
+import { NumberI18nComponent } from './components/number-i18n/number-i18n.component';
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import { CurrencyConverterComponent } from './components/currency-converter/curr
   declarations: [
     AnalogClockComponent,
     MicrophoneComponent,
-    CurrencyConverterComponent
+    CurrencyConverterComponent,
+    NumberI18nComponent
   ],
   exports: [
     AnalogClockComponent,
     MicrophoneComponent,
-    CurrencyConverterComponent
+    CurrencyConverterComponent,
+    NumberI18nComponent
   ]
 })
 export class NgPluggablesModule { }

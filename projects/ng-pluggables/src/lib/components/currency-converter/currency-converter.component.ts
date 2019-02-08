@@ -90,7 +90,7 @@ export class CurrencyConverterComponent implements OnInit {
     this.rows.forEach(targetRow => {
       if (targetRow.currency_key !== sourceRow.currency_key) {
         const targetCurrency = this.config.currencies.find(currency => currency.key === targetRow.currency_key);
-        targetRow.value = sourceRow.value * sourceCurrency.rate / targetCurrency.rate;
+        targetRow.value = sourceRow.value * targetCurrency.rate / sourceCurrency.rate;
       } else {
         targetRow.value = sourceRow.value;
       }
