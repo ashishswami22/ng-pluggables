@@ -39,7 +39,6 @@ export class NumberI18nComponent implements OnInit, OnChanges {
       this.translatedValue = `${this.value}`;
     }
     else {
-      console.log(this.value)
       this.translatedValue = '';
       const valueString = `${this.value}`;
       for (let i = 0; i < valueString.length; i++) {
