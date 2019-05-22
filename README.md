@@ -9,4 +9,4 @@ Reusable & customizable angular components
 * Analog clock
 
 ##Usage and Demo 
-Usage and demo of all components: https://ashishswami22.com/apps/ng-pluggables-demo/
+Usage and demo of all components: https://ashishswami22.github.io/apps/ng-pluggables-demo/
